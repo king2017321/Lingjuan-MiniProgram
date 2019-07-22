@@ -1,0 +1,2 @@
+<!--backtop-->
+<view class="backTop" bindtap='backTop' wx:if="{{backTopValue ==true}}"></view>

@@ -1,0 +1,8 @@
+var delHtmlTag = function(str) {
+  if (str !== undefined && str !== null){
+  var reg = getRegExp("<[^>]+>", "g");
+  var result = str.replace(reg, '');
+  return result;
+  }
+}
+module.exports.delHtmlTag = delHtmlTag;

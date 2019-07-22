@@ -1,0 +1,157 @@
+<!--index.wxml-->
+<wxs src="../../wxs/replace.wxs" module="tools" />
+
+<!--top-->
+<view id="search-wrap" class="search-wrap">
+  <image class="search-logo" src='../../images/logo.png'></image>
+  <view class='search'>
+    <input type='text' placeholder='输入你想要的内容' confirm-type='search' value="{{inputValue}}" bindinput='inputBind' bindconfirm='query' class='search-input-text'></input>
+    <image class="search-icon" src='../../images/search-icon.png' bindtap='query'></image>
+  </view>
+  <navigator class="toolbar-category" open-type="reLaunch" hover-class='toolbar-category-hover' url="/pages/index/index">
+    <image src='../../images/shouye_72x72.png'></image>
+  </navigator>
+</view>
+
+<!--nav-->
+<include src="../template/nav.wxml"/>
+
+<!--banner-->
+<view class='bannenr_box'>
+ <swiper indicator-dots='{{indicatorDots}}' autoplay='{{autoplay}}' interval='{{interval}}' duration='{{duration}}' indicator-color='rgba(0,0,0,0.2)' indicator-active-color='#ff4545'>
+  <block wx:for="{{bannenrImg}}" wx:key="{{index}}">
+   <swiper-item>
+    <navigator url='{{item.link}}?urlval={{item.text}}'>
+     <image src="{{item.image}}" class='bannenr-img'></image>
+    </navigator>
+   </swiper-item>
+  </block>
+ </swiper>
+</view>
+
+<!--page-nav-->
+<view class='page-nav-box'>
+ <scroll-view class='page-nav-swiper' bind:scroll='scrollTouChend' scroll-x="true" scroll-with-animation="true">
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=新' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.a568816d3fc22f07cd5047bd2c07ae6e.png'></image>
+    <span>现金红包</span>
+   </navigator>
+  </view>
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=9.9' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.3455a7ea7a46db29cc03c8de352b5212.png'></image>
+    <span>9.9包邮</span>
+   </navigator>
+  </view>
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=爆款' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.5cae34f688346b579a49f9b7e188c8cf.png'></image>
+    <span>淘爆款</span>
+   </navigator>
+  </view>
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=居家优品' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.0b15f3f5c2662fd885b6c71308828ae4.png'></image>
+    <span>居家优品馆</span>
+   </navigator>
+  </view>
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=百元券' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.811ccbf96e033e8a9142cf4d18ea465b.png'></image>
+    <span>百元券</span>
+   </navigator>
+  </view>
+  <view class='page-nav-item'>
+   <navigator url='/pages/list/list?urlval=特价' hover-class='page-navt-itemho'>
+    <image src='https://z11.tuanimg.com/imagev2/wxyy/110x110.495d9905ec8870fe2002002bcb3c8cb8.png'></image>
+    <span>天天特价</span>
+   </navigator>
+  </view>
+ </scroll-view>
+ <!--滚动条-->
+ <view class='t1-bottom'>
+  <view class='pagination'>
+   <span class="swiper-pagination-progressbar-fill" style="transform: translate3d(0px, 0px, 0px) scaleX({{t1scaleX}}) scaleY(1); transition-duration: 300ms;"></span>
+  </view>
+ </view>
+</view>
+
+<!--大家都在领-->
+<view class='home_ant_voucher'>
+ <!--title-->
+ <view class='home_h3 '>
+  <view class='col-mar clearfix'>
+    <view class="col-12-4 text-left">
+			大家都在领
+		</view>
+    <view class="col-12-8 text-right">
+			<text>138,570</text> 次实时领券
+    </view>
+  </view>
+ </view>
+ <!--container-->
+ <scroll-view class='scroll-container' scroll-x='true' scroll-with-animation='true'>
+ <block wx:for="{{djdzllist}}" wx:key="{{index}}">
+  <view class='scroll-item'>
+   <view class='cent'>
+    <navigator url='/pages/topic/topic?itemIdval={{item.itemId}}' class='img' hover-class='none'>
+     <image src='{{item.pictUrl}}'></image>
+     <text class="text">{{item.biz30Day}}人已领 | {{item.couponPrice}}元券</text>
+    </navigator>
+    <text class="name">{{tools.delHtmlTag(item.title)}}</text>
+    <view class="money"><i>¥</i>{{item.couponPrice}} <del>{{item.currentPrice}}</del></view>
+    <view class="progress" data-progress=""><i style="width: 6{{index}}%;"></i></view>
+   </view>
+  </view>
+ </block>
+ </scroll-view>
+</view>
+
+<!--宝贝列表-->
+<view class='new-content'>
+  <view class="new-title">
+    <image src="http://capi.jingtuitui.com/static/wap/images/018.png" mode='widthFix'></image>
+  </view>
+ <view class='new-list_' id='thelist'>
+  <view class='new-list-block clearfix' data-itemid='{{item.itemId}}' wx:for="{{newtblist}}" wx:key="{{newtblist}}" wx:for-index="{{index}}" bindtap="bindthelist">
+    <image src='{{item.pictUrl}}' mode='widthFix'></image>
+    <view class='new-list_right'>
+     <text class='new-name'>{{tools.delHtmlTag(item.title)}}</text>
+     <view class="new-quan"><text>券</text><view>￥{{item.couponPrice}}</view></view>
+     <view class='clearfix'>
+      <text class="new-price">￥{{item.afterCouponPrice}}<i>3</i></text>
+      <view class="new-sale">原价<text style="">{{item.currentPrice}}</text>元</view>
+     </view>
+     <button class="qiang_" hover-class="qiang_active">立即抢券</button>
+    </view>
+  </view>
+ </view>
+</view>
+
+<!--底部导航-->
+<view class='ui_bot_tab clearfix'>
+  <view id="cms_wap_home_down" class="col-10-2 list" bindtap='cms_wap_home_down'>
+    <image src="https://img.alicdn.com/imgextra/i4/2053469401/TB24KbjnZj_B1NjSZFHXXaDWpXa-2053469401.png" mode='widthFix'></image> 
+    <text style="color: rgb(253, 87, 92);">首页</text>
+  </view>
+  <view id="cms_wap_nine_down" class="col-10-2 list" bindtap='cms_wap_nine_down'>
+    <image src="https://img.alicdn.com/imgextra/i4/2053469401/TB23GLTn77mBKNjSZFyXXbydFXa-2053469401.png" mode='widthFix'></image> 
+    <text style="color: rgb(102, 102, 102);">9.9包邮</text>
+  </view>
+  <view id="cms_wap_classify_down" class="col-10-2 list" bindtap='cms_wap_classify_down'>
+    <image src="https://img.alicdn.com/imgextra/i2/2053469401/TB2nLTXn7omBKNjSZFqXXXtqVXa-2053469401.png" mode='widthFix'></image> 
+    <text style="color: rgb(102, 102, 102);">分类</text>
+  </view>
+  <view id="cms_wap_favorite_down" class="col-10-2 list" bindtap='cms_wap_favorite_down'>
+    <image src="https://img.alicdn.com/imgextra/i1/2053469401/TB26bEfnQZmBKNjSZPiXXXFNVXa-2053469401.png" mode='widthFix'></image> 
+    <text style="color: rgb(102, 102, 102);">收藏</text>
+  </view>
+  <view id="cms_wap_mine_down" class="col-10-2 list" bindtap='cms_wap_mine_down'>
+    <image src="https://img.alicdn.com/imgextra/i3/2053469401/TB2WXrhqFkoBKNjSZFkXXb4tFXa-2053469401.pnghttps://img.alicdn.com/imgextra/i3/2053469401/TB2WXrhqFkoBKNjSZFkXXb4tFXa-2053469401.png" mode='widthFix'></image> 
+    <text style="color: rgb(102, 102, 102);">我的</text>
+  </view>
+</view>
+
+<!--返回顶部-->
+<include src='../template/backtop.wxml' />

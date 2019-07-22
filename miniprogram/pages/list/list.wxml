@@ -1,0 +1,54 @@
+<!--miniprogram/pages/list/list.wxml-->
+<wxs src="../../wxs/replace.wxs" module="tools" />
+
+<include src="../template/nav.wxml"/>
+<!--选项-->
+<view class='order-nav order-nav-cat {{navTaggle?"show":"hide"}}' style="">
+ <view class='order-nav-li'>
+  <text>人气</text>
+ </view>
+ <view class='order-nav-li active'>
+  <text>最新</text>
+ </view>
+ <view class='order-nav-li'>
+  <text>销量</text>
+ </view>
+ <view class='order-nav-li'>
+  <text>价格高</text>
+ </view>
+  <view class='order-nav-li'>
+  <text>价格低</text>
+ </view>
+</view>
+
+<!--list-->
+<view class='content'>
+  <view class='list'>
+   <block wx:for="{{listdata}}" wx:key="{{index}}">
+    <view class='list_1' data-itemid='{{item.itemId}}' bindtap='list_itemId_click'>
+     <image class='list_img1' src='{{item.pictUrl}}' mode='widthFix'></image>
+     <view class='list_1_out'>
+      <view class='list_1_title'>
+       <view class='tm_img'>
+        <image wx:if="{{item.userType==1}}" src='../../images/tmall.png' mode='widthFix'></image>
+        <image wx:else src='../../images/taobao.png' mode='widthFix'></image>
+       </view>
+       <view class='details'>
+        {{tools.delHtmlTag(item.title)}}
+       </view>
+      </view>
+      <view class="list_price">
+       <text>￥{{item.afterCouponPrice}}</text>(券后价)
+      </view>
+      <view class="new-quan">
+        <text>券</text>
+        <view>￥{{item.couponPrice}}</view>
+      </view>
+     </view>
+    </view>
+   </block>
+  </view>
+ </view>
+
+<!--返回顶部-->
+<include src='../template/backtop.wxml' />

@@ -1,0 +1,151 @@
+<wxs src="../../wxs/replace.wxs" module="tools" />
+
+<!--header-->
+<view class="header_pr header_goods" style='display:none'>
+  <view class="icon_header">
+    <text class="iconfont icon-zuojiantou" style="background: rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255);"></text>
+   <view class="title" style="opacity: 0;">
+      <view class="row-s">
+        <text anchors="anchors_info" class="col-12-4 text-center active">商品</text>
+        <text anchors="anchors_title" class="col-12-4 text-center">详情</text>
+        <text anchors="anchors_ant" class="col-12-4 text-center">推荐</text>
+      </view>
+    </view>
+    <text class="iconfont icon-gengduo" style="background: rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255);"></text>
+  </view>
+</view>
+<!--content-->
+
+<view id='anchors_info'>
+
+ <!--maximg-->
+ <view class='goods_swiper'>
+  <swiper current="{{swiperCurrent}}" bindchange="swiperChange">
+   <block wx:for="{{maximg}}" wx:key="{{index}}">
+    <swiper-item>
+     <image src='{{item.image}}' mode='widthFix'></image>
+    </swiper-item>
+   </block>
+  </swiper>
+  <view class="dots">
+    <block wx:for="{{maximg}}" wx:key="unique">
+      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    </block>
+  </view>
+ </view>
+
+ <!--title-->
+ <view class='goods_info'>
+  <view class='h1 col-mar'>
+   <text>{{datainfo.data.userType==0?"淘宝":"天猫"}}</text>{{tools.delHtmlTag(datainfo.data.title)}}
+  </view>
+  <view class='info row-s col-mar'>
+    <view class="col-12-6 text-left col-money">
+      券后价 <view class=""><text>¥</text>{{datainfo.data.afterCouponPrice}}</view>
+    </view>
+    <view class="col-12-6 text-right">已售{{datainfo.data.biz30Day}}</view>
+    <view class="col-12-6 text-left col-888">{{datainfo.data.userType==0?"淘宝":"天猫"}}价 ¥{{datainfo.data.currentPrice}}</view>
+    <view class="col-12-6 text-right auth"><text>包邮</text><text>运费险</text></view>
+  </view>
+
+  <!--劵-->
+  <view class='goods_quan row-s' bindtap='layuilayershade'>
+   <view class='row getGoodsLink'>
+    <view class="col-12-8 money">
+      <view class='p_text'><text>{{datainfo.data.couponPrice}}</text> 元优惠券</view>
+      使用期限:
+    </view>
+    <view class="col-12-4 name">
+      <text>活动进行中</text>
+    </view>
+   </view>
+   <image src="https://cmsstatic.dataoke.com//wap_new/main/images/goods_quan.png?v=201905091429" mode='widthFix'></image>
+  </view>
+ <view class="goods_desc col-mar col-888">{{datainfo.data.userType==0?"淘宝":"天猫"}}优惠券特惠，{{tools.delHtmlTag(datainfo.data.title)}}</view>
+ </view>
+
+ <!--宝贝详情图片-->
+ <view class='tuwen-tkl' id='anchors_title'>
+  <view class='pic-detail'>
+   <view class='pic-detail-btn'>
+    <text class='pic-detail-btn-span' bindtap='picdetailbtn'>查看图文详情</text>
+   </view>
+   <view class='pic-detail-show {{picdetailshow?"show":"hide"}}' style='display:none;'>
+    <image src='{{datainfo.data.pictUrl}}' mode='widthFix'></image>
+   </view>
+  </view>
+ </view>
+
+ <!--今日热销-->
+ <view id='anchors_ant'><view id='goods_item_list'></view></view>
+
+ <!--精品推荐-->
+ <view class="pos-title">
+  <view><i></i>精品推荐<b></b></view>
+ </view>
+ <view class='content'>
+  <view class='list'>
+   <block wx:for="{{jptjlist}}" wx:key="{{index}}">
+    <view class='list_1' data-itemid='{{item.itemId}}' bindtap='list_itemId_click'>
+     <image class='list_img1' src='{{item.pictUrl}}' mode='widthFix'></image>
+     <view class='list_1_out'>
+      <view class='list_1_title'>
+       <view class='tm_img'>
+        <image wx:if="{{item.userType==1}}" src='../../images/tmall.png' mode='widthFix'></image>
+        <image wx:else src='../../images/taobao.png' mode='widthFix'></image>
+       </view>
+       <view class='details'>
+        {{tools.delHtmlTag(item.title)}}
+       </view>
+      </view>
+      <view class="list_price">
+       <text>￥{{item.afterCouponPrice}}</text>(券后价)
+      </view>
+      <view class="new-quan">
+        <text>券</text>
+        <view>￥{{item.couponPrice}}</view>
+      </view>
+     </view>
+    </view>
+   </block>
+  </view>
+ </view>
+</view>
+
+<!--buttom-->
+<view class='purchase_d_out'>
+ <view class='purchase_d2'>
+  <view class='purchase_1'>
+   券后价:<text>￥{{datainfo.data.afterCouponPrice}}</text>
+  </view>
+  <view class="purchase_2">
+   优惠:<text>￥{{datainfo.data.couponPrice}}</text>
+  </view>
+  <view class="purchase_4" bindtap='layuilayershade'>
+   用淘口令领券
+  </view>
+ </view>
+</view>
+
+<!--领券 淘口令-->
+<view class='layui-layer-shade {{layuilayertaggle?"show":"hide"}}' id="layui-layer-shade1" times="1" style="z-index:19891014; background-color:#000; opacity:0.5;" bindtap='layuilayershade'></view>
+<view class='layui-layer {{layuilayertaggle?"show":"hide"}}' id="layui-layer1" style="z-index: 19891015;top:207.5px;left: 28.5px;">
+  <view class='layui-layer-content'>
+   <view class='buy-box'>
+    <view class="close buy-icon" bindtap='layuilayershade'></view>
+    <view class="buy-box-tab-bg">复制淘口令购买</view>
+    <view class='buy-box-center'>
+     <view class='code-cent'>
+      <view class="cente-text">
+        <view>
+         <text class="textarea" id="codeCopy">复制框内整段文字，打开【手淘APP】在搜索框内搜索此链接 {{tklval}}</text>
+        </view>
+      </view>
+      <text class="text">长按文字区域手动复制淘口令</text>
+      <view class="buy-btn-copy {{buybtncopy?'active':''}}" bindtap="copytext" aria-label="复制框内整段文字，打开【手淘APP】即可领券购买。￥ZO9dYW8YRWD￥">一键复制</view>
+      <view style="height:28rpx;"></view>
+     </view>
+    </view>
+   </view>
+  </view>
+</view>

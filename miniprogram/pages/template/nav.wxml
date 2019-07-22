@@ -1,0 +1,26 @@
+<!--nav-->
+<view class='nav-box {{navboxposi?"navboxposi":""}}'>
+ <scroll-view class='nav-box-scroll {{navTaggle?"show":"hide"}}' scroll-x="true" scroll-with-animation="true" enable-back-to-top>
+  <block wx:for="{{navData}}" wx:key="{{index}}">
+    <navigator url='{{item.link}}?urlid={{index}}&urlval={{item.text}}' class='nav-box-li {{activeNav==index?"active":""}}' hover-class='nav-box-li-hover' open-type="{{opentype}}">
+    <text>{{item.text}}</text>
+    </navigator>
+  </block>
+ </scroll-view>
+ <view class='drop-down'>
+  <view class="drop-down-bg-wrap" bind:tap='dropDownClick'>
+    <view class="drop-down-bg" style='transform: rotateZ({{navTaggle?"0":"180"}}deg);'></view>
+  </view>
+  <view class='drop-down-content {{!navTaggle?"show":"hide"}}'>
+   <view class='drop-down-content-choose'>选择分类</view>
+    <ul class="drop-down-tag-list">
+      <block wx:for="{{navData}}" wx:key="{{index}}">
+        <navigator url='{{item.link}}?urlid={{index}}&urlval={{item.text}}' class='index drop-down-item' open-type="{{opentype}}">
+        <text>{{item.text}}</text>
+        </navigator>
+      </block>
+    </ul>
+  </view>
+  <view class='opacity {{!navTaggle?"show":"hide"}}' bind:tap='dropDownClick'></view>
+ </view>
+</view>

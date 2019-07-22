@@ -1,0 +1,147 @@
+/* miniprogram/pages/list/list.wxss */
+.navboxposi{
+  position: fixed;left: 0;top: 0;
+  z-index: 99;
+  background: #fff;
+}
+.order-nav {
+    height: 100rpx;
+    background: #fff;
+    position: fixed;
+    top: 68rpx;
+    z-index: 54;
+    width: 100%;
+}
+.order-nav-cat, .order-nav-cat .order-nav-li {
+    height: 64rpx;
+    line-height: 64rpx;
+}
+.order-nav-li {
+    box-sizing: border-box;
+    float: left;
+    width: 20%;
+    text-align: center;
+    line-height: 100rpx;
+    height: 100rpx;
+}
+.order-nav-li text {
+    font-size: 24rpx;
+    color: #333;
+    display: block;
+}
+.order-nav-li.active text {
+    color: #fe4a65;
+}
+/**list**/
+.pos-title {
+  display: block;
+  width: 100%;
+  padding: 30rpx 0px;
+  margin-bottom: 0px;
+  background-color: #fff;
+}
+.pos-title view {
+  position: relative;
+  line-height: 32rpx;
+  text-align: center;
+  color: #999;
+  font-size: 30rpx;
+  height: 32rpx;
+  width: 78px;
+  padding: 0 64rpx;
+  margin: 0 auto;
+}
+.content {
+  margin-top:132rpx;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.content .list {
+  overflow: hidden;
+  font-size:24rpx;
+  margin-top: 0;
+  align-items: center;
+  align-content: space-between;
+}
+.list_1 {
+  padding-bottom: 0.5rem;
+  position: relative;
+  border: 1px solid #EEEEEE;
+  width: 49%;
+  overflow: hidden;
+  float: left;
+  /* word-spacing: -4px; */
+  letter-spacing: 0px;
+  margin-bottom: 0.2rem;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0.4%;
+  background-color: white;
+}
+.list_img1 {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  max-height:366rpx;
+  min-height:366rpx;
+}
+.list_1_title {
+  display: flex;
+}
+.list_1_title .tm_img {
+  display: inline-block;
+  margin: 0 16rpx 0 8rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.list_1_title .tm_img image {
+  width: 28rpx;
+}
+.list .details {
+  line-height: 28rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+.list_price {
+  display:block;
+  color: #ed145b;
+  margin-top:16rpx;
+  margin-left: 6rpx;
+}
+.list_price text {
+  font-weight: bolder;
+  font-size: 34rpx;
+}
+.new-quan {
+  height: 40rpx;
+  padding-right: 10rpx;
+  line-height: 50rpx;
+  color: rgba(253, 56, 93, 1);
+  font-size: 24rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+.new-quan text {
+    background: rgba(253, 56, 93, 1);
+    width: 40rpx;
+    height: 40rpx;
+    display: block;
+    text-align: center;
+    color: #fff;
+    line-height: 40rpx;
+    float: left;
+    border-top-left-radius: 6rpx;
+    border-bottom-left-radius: 6rpx;
+}
+.new-quan view {
+    float: left;
+    border: 1rpx rgba(253, 56, 93, 1) solid;
+    line-height: 36rpx;
+    text-align: center;
+    padding: 0 4rpx;
+    border-top-right-radius: 6rpx;
+    border-bottom-right-radius: 6rpx;
+}

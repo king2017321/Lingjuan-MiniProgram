@@ -1,0 +1,8 @@
+<!--pages/mine/mine.wxml-->
+<view class='mine-logo'>
+ <image src='{{avatarUrl}}' mode='widthFix'></image>
+ <text>{{nickName}}</text>
+</view>
+<button class='bottom {{taggle?"show":"hide"}}' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+授权登录
+</button>
